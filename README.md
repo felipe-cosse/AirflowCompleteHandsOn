@@ -1,6 +1,8 @@
 # AirflowCompleteHandsOn
 Curso de Airflow da Udemy - The Complete Hands-On Introduction to Apache Airflow
 
+Link: https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/
+
 
 ssh -p 2200 airflow@localhost
 
