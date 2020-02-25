@@ -109,3 +109,16 @@ SHOW TABLES;
 SELECT COUNT(*) FROM tweets;
 
 cp airflow_files/data/data.csv airflow_files/
+
+grep worker_refresh_interval airflow/airflow.cfg
+
+grep dag_dir_list_interval airflow/airflow.cfg
+
+cp airflow_files/simple_dag_backfill.py airflow/dags/
+
+vim airflow/dags/simple_dag_backfill.py
+
+date
+
+
+
