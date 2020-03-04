@@ -10,15 +10,15 @@ sudo -E ./start.sh
 
 Role/App - Login - Password
 
-root root centos
+- root root centos
 
-user airflow airflow
+- user airflow airflow
 
-mysql root mysql
+- mysql root mysql
 
-mysql hive hive
+- mysql hive hive
 
-rabbitmq admin rabbit
+- rabbitmq admin rabbitmq
 
 
 App - URL
@@ -119,6 +119,60 @@ cp airflow_files/simple_dag_backfill.py airflow/dags/
 vim airflow/dags/simple_dag_backfill.py
 
 date
+
+vim airflow/airflow.cfg
+
+/executor
+
+executor = LocalExecutor
+
+/sql_alchemy_conn
+
+sql_alchemy_conn = postgresql+psycopg2://airflow@localhost:5432/airflow_mdb
+
+airflow initdb
+
+cp airflow_files/dynamic_dag.py airflow/dags/
+
+vim airflow/dags/dynamic_dag.py
+
+CREATE Connections
+
+postgre_sql - Postgres - localhost - airflow_mdb - airflow - 5432
+
+SELECT * FROM local_executor.task
+
+vim airflow/airflow.cfg
+
+/dag_concurrency
+
+dag_concurrency = 1
+
+/executor
+
+executor = CeleryExecutor
+
+/broker_url
+
+broker_url = pyamqp://admin:rabbitmq@localhost/
+
+/result_backend
+
+result_backend = db+postgresql://airflow@localhost:5432/airflow_mdb
+
+/worker_log_server_port
+
+worker_log_server_port = 8794
+
+airlfow resetdb
+
+airflow worker
+
+Rabbitmq = http://localhost:15672/
+
+CREATE Connections
+
+postgre_sql - Postgres - localhost - airflow_mdb - airflow - 5432
 
 
 
