@@ -174,5 +174,17 @@ CREATE Connections
 
 postgre_sql - Postgres - localhost - airflow_mdb - airflow - 5432
 
+vim airflow/airflow.cfg
+
+/executor
+
+executor = LocalExecutor
+
+vim airflow_files/subdag_dag.py
+
+vim airflow_files/subdag_factory.py
+
+cp airflow_files/subdag_dag.py airflow/dags/
+
 
 
